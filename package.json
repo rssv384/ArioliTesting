@@ -1,0 +1,22 @@
+{
+  "name": "ariolitesting",
+  "version": "1.0.0",
+  "description": "Suite de pruebas automatizadas para el software Arioli.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rssv384/ArioliTesting.git"
+  },
+  "author": "Raúl Soto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rssv384/ArioliTesting/issues"
+  },
+  "homepage": "https://github.com/rssv384/ArioliTesting#readme",
+  "dependencies": {
+    "cypress": "^12.12.0"
+  }
+}
