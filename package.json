@@ -16,7 +16,8 @@
     "url": "https://github.com/rssv384/ArioliTesting/issues"
   },
   "homepage": "https://github.com/rssv384/ArioliTesting#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2",
     "cypress": "^12.12.0"
   }
 }
