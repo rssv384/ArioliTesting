@@ -1,28 +1,26 @@
-const { defineConfig } = require('cypress')
+import { lighthouse, prepareAudit } from '@cypress-audit/lighthouse'
+import { defineConfig } from 'cypress'
+import fs from 'fs'
+import { ReportGenerator } from 'lighthouse/report/generator/report-generator.js'
 
-module.exports = defineConfig({
+export default defineConfig({
+	watchForFileChanges: false,
 	e2e: {
-		watchForFileChanges: false,
-		setupNodeEvents(on, config) {
-			// implement node event listeners here
-		},
-	},
-})
-
-const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse')
-// const { pa11y } = require("@cypress-audit/pa11y");
-module.exports = {
-	e2e: {
-		watchForFileChanges: false,
-		baseUrl: 'http://localhost:5000', // this is your app
+		baseUrl: 'http://127.0.0.1:5000/',
 		setupNodeEvents(on, config) {
 			on('before:browser:launch', (browser = {}, launchOptions) => {
 				prepareAudit(launchOptions)
 			})
+
+			// Fuente: https://github.com/vrknetha/cypress-lighthouse
 			on('task', {
-				lighthouse: lighthouse(),
-				// pa11y: pa11y(console.log.bind(console)),
+				lighthouse: lighthouse((lighthouseReport) => {
+					fs.writeFileSync(
+						'./lhreport.html',
+						ReportGenerator.generateReport(lighthouseReport.lhr, 'html')
+					)
+				}),
 			})
 		},
 	},
-}
+})
