@@ -12,9 +12,15 @@ describe('Performance Test', () => {
 		}
 		const lighthouseConfig = {
 			formFactor: 'desktop',
-			screenEmulation: { disabled: true },
+			screenEmulation: {
+				mobile: false,
+				disable: false,
+				width: Cypress.config('viewportWidth'),
+				height: Cypress.config('viewportHeight'),
+				deviceScaleRatio: 1,
+			},
 		}
-		cy.visit('http://localhost:5000/internacional')
+		cy.visit('http://localhost:5000')
 		cy.lighthouse(thresholds, lighthouseConfig)
 	})
 })
